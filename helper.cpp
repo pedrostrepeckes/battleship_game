@@ -1,3 +1,13 @@
+struct message{
+    char board_pos[4];
+    char command[3];
+};
+
+
+int board_len = 8;
+
+char board_game[8][8];
+
 void print_first_board (){
 
 	for (int i=0; i<board_len; i++){

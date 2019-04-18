@@ -19,9 +19,8 @@ using namespace std;
 #define handle_error(msg) \
            do { perror(msg); exit(EXIT_FAILURE); } while (0)
 
-struct message{
-    char value[3];
-};
+#include "helper.cpp"
+
 struct message msg;
 
 struct client{
@@ -71,7 +70,7 @@ int main(){
         handle_error("accept");
     }
     printf("con0\n");
-    Client[1].sockID = accept(sock, (struct sockaddr *)0,0);
+    /*Client[1].sockID = accept(sock, (struct sockaddr *)0,0);
 
     if (Client[1].sockID == -1)
     {
@@ -83,14 +82,16 @@ int main(){
     if (Client[2].sockID == -1)
     {
         handle_error("accept");
-    }
+    }*/
 
     printf("con2\n");
     while(1){
 
-        for(int i=0; i<3; i++){
+        for(int i=0; i<1; i++){
             int msg_len = recv(Client[i].sockID, &msg, sizeof(message), 0); 
-            cout << "Message received. Value = " << msg.value << endl;
+            //msg.board_pos[3] = '\0';
+            cout << "Position = " << msg.board_pos << endl;
+            cout << "Command = " << msg.board_pos[0] << endl;
             send(Client[i].sockID, &msg, sizeof(struct sockaddr *),0);
         }
 

@@ -16,18 +16,9 @@ using namespace std;
 
 #define IP "127.0.0.1" //Server IP
 #define PORT 6335 //Server Port
-
-struct message{
-    char value[3];
-};
-struct message msg;
-
-int board_len = 8;
-
-char board_game[8][8];
-
 #include "helper.cpp"
 
+struct message msg;
 
 int main(){
     int s0; //Sockets
@@ -55,21 +46,25 @@ int main(){
     while(1){
     	fflush(stdout);
         //Get message from terminal
-        cout << "Enter a integer for the server:" << endl;
-        cin >> msg.value;
+        cout << "Enter the position to launch a missile:" << endl;
+        cin >> msg.board_pos;
 
         //Send message to Server
         send(s0, &msg, sizeof(struct message), 0);
 
-        cout << "The entered value= " << msg.value << endl;
-
+        cout << "The entered value= " << msg.board_pos << endl;
+        //msg.command[] = {'S', '\0'};
+        msg.command[0] ='S';
+        cout << "Command = " << msg.command[0] << endl;
+        cout << "Command = " << msg.command[1] << endl;
+        cout << "Command = " << msg.command[2] << endl;
         //msg = void;
 
         //Receive response from server
         recv(s0, &msg, sizeof(struct message), 0);
 
         //Show message in terminal
-        cout << "The entered value times 2 = " << msg.value << endl;
+        cout << "The entered value times 2 = " << msg.board_pos << endl;
 
         recv(s0, &msg, sizeof(struct message), 0);
         //recv(s0, &msg, sizeof(struct message), 0);
