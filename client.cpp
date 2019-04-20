@@ -10,6 +10,7 @@
 #include <string.h>
 #include <iostream>
 #include <unistd.h>
+#include <conio.h>
 
 using namespace std;
 

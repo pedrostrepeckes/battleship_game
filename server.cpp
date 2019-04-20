@@ -30,6 +30,7 @@ int main(){
     game_control = true;
     client_rounds[0] = client_rounds[1] = client_rounds[2] = 0;
 
+    set_the_ships();
     //Create socket
     sock = socket(AF_INET, SOCK_STREAM, 0);
     if(sock < 0){
@@ -114,7 +115,7 @@ int main(){
             client_rounds[i]++;
         }
         print_server_board();
-        if (client_rounds[2] == 10)
+        if (client_rounds[2] == 28)
         {
             cout<<"game is over...the machine won"<<endl;
             game_is_over(Client);

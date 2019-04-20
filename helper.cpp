@@ -24,8 +24,10 @@ void print_first_board (){
     }
 
     for (int i=0; i<board_len; i++){
+        cout<<"|";
     	for(int j=0; j<board_len; j++){
     		printf("%c", board_game_client[i][j]);
+            cout<<"|";
     	}
     	printf("\n");
     }
@@ -39,8 +41,10 @@ void update_board(int i, int j, char situation){
 void print_updated_board(){
 
     for (int i=0; i<board_len; i++){
+        cout<<"|";
         for(int j=0; j<board_len; j++){
             printf("%c", board_game_client[i][j]);
+            cout<<"|";
         }
         printf("\n");
     }
@@ -48,8 +52,10 @@ void print_updated_board(){
 
 void print_server_board(){
     for (int i=0; i<board_len; i++){
+        cout<<"|";
         for(int j=0; j<board_len; j++){
             printf("%c", board_game_server[i][j]);
+            cout<<"|";
         }
         printf("\n");
     }
@@ -64,13 +70,29 @@ void set_vert_battleship(int i, int j){
     number_of_ships_parts = number_of_ships_parts + 4;
 }
 
-void set_horiz_battleship(int i, int j){
+void set_horiz_sub(int i, int j){
     //length 4
     board_game_server[i][j] = 'S';
     board_game_server[i][j+1] = 'S';
     board_game_server[i][j+2] = 'S';
-    board_game_server[i][j+3] = 'S';
-    number_of_ships_parts = number_of_ships_parts + 4;
+    number_of_ships_parts = number_of_ships_parts + 3;
+}
+
+void set_horiz_frigate(int i, int j){
+    //length 4
+    board_game_server[i][j] = 'S';
+    board_game_server[i][j+1] = 'S';
+    number_of_ships_parts = number_of_ships_parts + 2;
+}
+
+void set_vert_aircraft_carrier(int i, int j){
+    //length 4
+    board_game_server[i][j] = 'S';
+    board_game_server[i+1][j] = 'S';
+    board_game_server[i+2][j] = 'S';
+    board_game_server[i+3][j] = 'S';
+    board_game_server[i+3][j] = 'S';
+    number_of_ships_parts = number_of_ships_parts + 5;
 }
 
 void set_the_ships(){
@@ -81,15 +103,16 @@ void set_the_ships(){
         }
     }
 
-    //set_aircraft_carrier();
+    set_vert_aircraft_carrier(2,6);
     set_vert_battleship(1,1);
-    set_horiz_battleship(3,3);
-    //set_sub();
-    //set_frigate();
+    set_horiz_sub(0,3);
+    set_horiz_frigate(6,0);
 
     for (int i=0; i<board_len; i++){
+        cout<<"|";
         for(int j=0; j<board_len; j++){
             printf("%c", board_game_server[i][j]);
+            cout<<"|";
         }
         printf("\n");
     }
