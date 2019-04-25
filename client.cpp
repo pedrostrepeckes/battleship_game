@@ -10,11 +10,11 @@
 #include <string.h>
 #include <iostream>
 #include <unistd.h>
-#include <conio.h>
 
 using namespace std;
 
 #define IP "127.0.0.1" //Server IP
+//#define IP "192.168.172.130" //Server IP
 #define PORT 6335 //Server Port
 #include "helper.cpp"
 
@@ -102,7 +102,7 @@ int main(){
     		cout<< "row "<< pos_row<<endl;
     		cout<< "col "<< pos_col<<endl;
     		update_board(pos_row, pos_col, 'X');
-    		//sleep(3);
+    		//sleep(1);
     	}
 
     }

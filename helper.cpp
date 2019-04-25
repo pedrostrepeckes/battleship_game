@@ -71,7 +71,7 @@ void set_vert_battleship(int i, int j){
 }
 
 void set_horiz_sub(int i, int j){
-    //length 4
+    //length 3
     board_game_server[i][j] = 'S';
     board_game_server[i][j+1] = 'S';
     board_game_server[i][j+2] = 'S';
@@ -79,19 +79,19 @@ void set_horiz_sub(int i, int j){
 }
 
 void set_horiz_frigate(int i, int j){
-    //length 4
+    //length 2
     board_game_server[i][j] = 'S';
     board_game_server[i][j+1] = 'S';
     number_of_ships_parts = number_of_ships_parts + 2;
 }
 
 void set_vert_aircraft_carrier(int i, int j){
-    //length 4
+    //length 5
     board_game_server[i][j] = 'S';
     board_game_server[i+1][j] = 'S';
     board_game_server[i+2][j] = 'S';
     board_game_server[i+3][j] = 'S';
-    board_game_server[i+3][j] = 'S';
+    board_game_server[i+4][j] = 'S';
     number_of_ships_parts = number_of_ships_parts + 5;
 }
 
@@ -126,6 +126,8 @@ bool is_a_hit(int row, int column){
     {
         board_game_server[row][column] = 'X';
         number_of_right_missiles++;
+        printf("Right missiles %d\n", number_of_right_missiles);
+        printf("Live ships %d\n", number_of_ships_parts);
         return true;
     }
     return false;
@@ -136,12 +138,14 @@ bool decode_message(char command){
     switch (command){
 
            case 'R':
-             cout << "Acertouuuu" <<endl;
+             cout << "You hit" <<endl;
+             sleep(1);
              return true;
            break;
 
            case 'M':
-             cout << "Errouuu" <<endl;
+             cout << "It's a miss" <<endl;
+             sleep(1);
              return true;
            break;
 

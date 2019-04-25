@@ -30,7 +30,6 @@ int main(){
     game_control = true;
     client_rounds[0] = client_rounds[1] = client_rounds[2] = 0;
 
-    set_the_ships();
     //Create socket
     sock = socket(AF_INET, SOCK_STREAM, 0);
     if(sock < 0){
@@ -110,6 +109,7 @@ int main(){
             send(Client[i].sockID, &msg, sizeof(struct sockaddr *),0);
             if(is_end_of_game()){
                 game_is_over_win(Client);
+                printf("End of Game");
                 game_control = false;
             }
             client_rounds[i]++;
